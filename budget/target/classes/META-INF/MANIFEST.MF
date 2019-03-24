@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: budget-app
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: dan
+Implementation-Vendor-Id: group.project
+Build-Jdk: 1.8.0_161
+Implementation-URL: http://projects.spring.io/spring-boot/budget/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
