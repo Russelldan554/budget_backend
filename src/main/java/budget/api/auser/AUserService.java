@@ -20,7 +20,7 @@ public class AUserService {
 		return ausers;
 	}
 
-	public Optional<AUser> getUser(String userId) {
+	public Optional<AUser> getUser(long userId) {
 		return aUserRepository.findById(userId);
 	}
 
@@ -28,11 +28,11 @@ public class AUserService {
 		aUserRepository.save(auser);
 	}
 
-	public void updateUser(String userId, AUser auser) {
+	public void updateUser(long userId, AUser auser) {
 		aUserRepository.save(auser);
 	}
 
-	public void deleteUser(String userId) {
+	public void deleteUser(long userId) {
 		aUserRepository.deleteById(userId);
 	}
 }

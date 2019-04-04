@@ -32,7 +32,6 @@ public class AUser {
 		
 	public AUser(Long userId, String accountId, String userName, String password) {
 		super();
-		this.userId = userId;
 		this.accountId = accountId;
 		this.userName = userName;
 		this.password = password;

@@ -22,7 +22,7 @@ public class AUserController {
 	}
 	
 	@RequestMapping("/ausers/{userId}")
-	public Optional<AUser> getUser(@PathVariable String userId) {
+	public Optional<AUser> getUser(@PathVariable long userId) {
 		return aUserService.getUser(userId);
 	}
 	
@@ -32,12 +32,12 @@ public class AUserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value = "/ausers/{userId}")
-	public void updateUser(@RequestBody AUser auser, @PathVariable String userId) {
+	public void updateUser(@RequestBody AUser auser, @PathVariable long userId) {
 		aUserService.updateUser(userId, auser);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value = "/ausers/{userId}")
-	public void deleteUser(@PathVariable String userId) {
+	public void deleteUser(@PathVariable long userId) {
 		aUserService.deleteUser(userId);
 	}
 }
