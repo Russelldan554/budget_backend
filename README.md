@@ -9,7 +9,9 @@ run the project and it should come up on localhost:8080
 
 MYSQL DB TEST SCRIPT
 
--- Budget Database Createion
+## Budget Database Createion
+
+```
 CREATE Database Budget;
 USE Budget;
 
@@ -20,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Users (
 	User_Name VARCHAR(20) UNIQUE,
 	Password VARCHAR(20) NOT NULL
 )engine = innodb ;
-
+```
 
 
 
@@ -32,12 +34,15 @@ Make sure userId in message body null for POST requests and the correct userId f
 
 
 Get all users:
+
   Get request to Url: localhost:8080/ausers
 
 Get particular user:
+
   Get request to url: localhost:8080/ausers/{userId}
 
 Post user: 
+```
   Post request to url: localhost:8080/ausers
   Body
   {
@@ -46,8 +51,11 @@ Post user:
 	  "userName": "NoMoney",
 	  "password": "Its working alright"
   }
+```
+
 
 Update particular user: 
+```
   Put request here: localhost:8080/ausers/{userId}
   Body
   {
@@ -56,3 +64,4 @@ Update particular user:
 	  "userName": "NoMoney2",
 	  "password": "Its working alright"
   }
+```
