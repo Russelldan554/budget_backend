@@ -14,7 +14,7 @@ Spring is set-up to build the mySQL database, all you need to do is create the d
 
 ```
 CREATE Database moolah;
-
+```
 
 
 
@@ -44,8 +44,7 @@ Post user:
         "firstName": "Billy",
         "lastName": "Bob",
         "dateCreated": "2019-01-14"
-    }
-    
+    }    
 ```
 
 
@@ -62,7 +61,6 @@ Update particular user:
         "lastName": "Bob",
         "dateCreated": "2019-01-14"
     }
-
 ```
 
 Get all accounts of user:
@@ -81,9 +79,7 @@ Post account:
     	"accountId": null,
     	"accountName": "bigone77",
     	"balance": 7777.77
-    }
-
-    
+    }  
 ```
 
 
@@ -96,8 +92,6 @@ Update particular account of user:
     	"accountName": "updated77",
     	"balance": 777777.77
     }
-
-
 ```
 
 
@@ -118,10 +112,7 @@ Post transaction:
         "date": "2019-01-14"
     	"category": "$Money",
     	"amount": 77.77
-    }
-
-
-    
+    }   
 ```
 
 
@@ -135,9 +126,6 @@ Update particular transaction of account:
     	"category": "$Money",
     	"amount": 7.77
     }
-
-
-
 ```
 
 Get all budgets of user:
@@ -156,9 +144,7 @@ Post budget:
     	"budgetId": null,
     	"category": "Groceries",
     	"maxAmount": 777.77
-    }
-
-    
+    }   
 ```
 
 
@@ -171,6 +157,4 @@ Update particular budget of user:
     	"category": "Gas",
     	"maxAmount": 7777.77
     }
-
-
 ```
