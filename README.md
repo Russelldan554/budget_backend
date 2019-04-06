@@ -39,9 +39,9 @@ Post user:
     	"userName": "bigone2",
     	"email": "BillyBob@monkey.com",
     	"password": "R%#$F^",
-      "firstName": "Billy",
-      "lastName": "Bob",
-      "dateCreated": "2019-01-14"
+       "firstName": "Billy",
+       "lastName": "Bob",
+       "dateCreated": "2019-01-14"
     }    
 ```
 
@@ -55,9 +55,9 @@ Update particular user:
     	"userName": "UpdatedYeah",
     	"email": "BillyBob@monkey.com",
     	"password": "R%#$F^",
-      "firstName": "Billy",
-      "lastName": "Bob",
-      "dateCreated": "2019-01-14"
+       "firstName": "Billy",
+       "lastName": "Bob",
+       "dateCreated": "2019-01-14"
     }
 ```
 
@@ -107,7 +107,7 @@ Post transaction:
   Body
     {
     	"transactionId": null,
-      "date": "2019-01-14"
+       "date": "2019-01-14"
     	"category": "$Money",
     	"amount": 77.77
     }   
@@ -120,7 +120,7 @@ Update particular transaction of account:
   Body
     {
     	"transactionId": {transactionId},
-      "date": "2019-01-14"
+       "date": "2019-01-14"
     	"category": "$Money",
     	"amount": 7.77
     }
