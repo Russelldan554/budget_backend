@@ -1,7 +1,9 @@
 package budget.api.transaction;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +19,17 @@ public class Transaction {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long transactionId;
+	@Column(nullable=false)
 	@JsonFormat(pattern="yyyy-MM-DD")
 	private Date date;
+	@Column(nullable=false, length=10)
 	private String category;
-	private Double amount;
+	@Column(nullable=false, precision=10, scale=2)
+	private BigDecimal amount;
 	@ManyToOne
 	private Account account;
 		
-	public Transaction(Long transactionId, Date date, String category, Double amount, Long accountId) {
+	public Transaction(Long transactionId, Date date, String category, BigDecimal amount, Long accountId) {
 		super();
 		this.transactionId = transactionId;
 		this.date = date;
@@ -55,10 +60,10 @@ public class Transaction {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public Double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
-	public void setAmount(Double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 

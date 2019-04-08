@@ -1,5 +1,8 @@
 package budget.api.account;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,12 +17,14 @@ public class Account {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long accountId;
+	@Column(nullable=false, length=30)
 	private String accountName;
-	private Double balance;
+	@Column(nullable=false, precision=10, scale=2)
+	private BigDecimal balance;
 	@ManyToOne
 	private User user;
 		
-	public Account(Long accountId, String accountName, Double balance, Long userId) {
+	public Account(Long accountId, String accountName, BigDecimal balance, Long userId) {
 		super();
 		this.accountId = accountId;
 		this.accountName = accountName;
@@ -43,10 +48,10 @@ public class Account {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
-	public Double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
-	public void setBalance(Double balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 	public User getUser() {

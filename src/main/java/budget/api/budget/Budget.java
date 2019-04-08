@@ -1,5 +1,8 @@
 package budget.api.budget;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,12 +17,14 @@ public class Budget {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long budgetId;
+	@Column(nullable=false, length=10)
 	private String category;
-	private Double maxAmount;
+	@Column(nullable=false, precision=10, scale=2)
+	private BigDecimal maxAmount;
 	@ManyToOne
 	private User user;
 		
-	public Budget(Long budgetId, String category, Double maxAmount, Long userId) {
+	public Budget(Long budgetId, String category, BigDecimal maxAmount, Long userId) {
 		super();
 		this.budgetId = budgetId;
 		this.category = category;
@@ -43,10 +48,10 @@ public class Budget {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public Double getMaxAmount() {
+	public BigDecimal getMaxAmount() {
 		return maxAmount;
 	}
-	public void setMaxAmount(Double maxAmount) {
+	public void setMaxAmount(BigDecimal maxAmount) {
 		this.maxAmount = maxAmount;
 	}
 	public User getUser() {
