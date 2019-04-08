@@ -107,7 +107,7 @@ Post transaction:
   Body
     {
     	"transactionId": null,
-        "date": "2019-01-14"
+        "date": "2019-01-14",
     	"category": "$Money",
     	"amount": 77.77
     }   
@@ -120,7 +120,7 @@ Update particular transaction of account:
   Body
     {
     	"transactionId": {transactionId},
-        "date": "2019-01-14"
+        "date": "2019-01-14",
     	"category": "$Money",
     	"amount": 7.77
     }
