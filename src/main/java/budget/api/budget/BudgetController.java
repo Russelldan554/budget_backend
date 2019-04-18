@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import budget.api.user.User;
 
-@CrossOrigin(maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 public class BudgetController {
     

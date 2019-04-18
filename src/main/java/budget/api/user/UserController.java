@@ -1,6 +1,7 @@
 package budget.api.user;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 public class UserController {
     
@@ -41,5 +43,17 @@ public class UserController {
 	@RequestMapping(method=RequestMethod.DELETE, value = "/users/{id}")
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value = "/users/login")
+	@ResponseBody
+	public Long loginCheck(@RequestBody Map<String,String> requestBody) {
+		String userName = requestBody.get("username");
+		String password = requestBody.get("password");
+		User tempUser = userService.findByUsername(userName);
+		if (password.compareTo(tempUser.getPassword())==0) {
+			return tempUser.getUserId();
+		} else
+		return 0L;
 	}
 }
