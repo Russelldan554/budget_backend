@@ -16,34 +16,34 @@ import budget.api.user.User;
 @CrossOrigin(origins = "*")
 @RestController
 public class BudgetController {
-    
+
 	@Autowired
 	private BudgetService budgetService;
-	
+
 	@RequestMapping("/users/{userId}/budgets")
 	public List<Budget> getAllBudgets(@PathVariable Long userId) {
 		return budgetService.getAllBudgets(userId);
 	}
-	
+
 	@RequestMapping("/users/{userId}/budgets/{budgetId}")
-	public Optional<Budget> getBudget( @PathVariable Long userId, @PathVariable Long budgetId) {
+	public Optional<Budget> getBudget(@PathVariable Long userId, @PathVariable Long budgetId) {
 		return budgetService.getBudget(budgetId);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST, value = "/users/{userId}/budgets")
+
+	@RequestMapping(method = RequestMethod.POST, value = "/users/{userId}/budgets")
 	public void addBudget(@RequestBody Budget budget, @PathVariable Long userId) {
-		budget.setUser(new User(userId, "","","","","",null));
+		budget.setUser(new User(userId, "", "", "", "", "", null));
 		budgetService.addBudget(budget);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT, value = "/users/{userId}/budgets/{budgetId}")
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/users/{userId}/budgets/{budgetId}")
 	public void updateBudget(@RequestBody Budget budget, @PathVariable Long userId, @PathVariable Long budgetId) {
-		budget.setUser(new User(userId, "", "","","","",null));
+		budget.setUser(new User(userId, "", "", "", "", "", null));
 		budgetService.updateBudget(budget);
 	}
-	
-	@RequestMapping(method=RequestMethod.DELETE, value = "/users/{userId}/budgets/{budgetId}")
-	public void deleteBudget( @PathVariable Long userId, @PathVariable Long budgetId) {
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/users/{userId}/budgets/{budgetId}")
+	public void deleteBudget(@PathVariable Long userId, @PathVariable Long budgetId) {
 		budgetService.deleteBudget(budgetId);
 	}
 }
