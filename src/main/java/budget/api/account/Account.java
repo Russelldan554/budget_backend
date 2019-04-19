@@ -15,48 +15,55 @@ import budget.api.user.User;
 public class Account {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long accountId;
-	@Column(nullable=false, length=30)
+	@Column(nullable = false, length = 30)
 	private String accountName;
-	@Column(nullable=false, precision=10, scale=2)
+	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal balance;
 	@ManyToOne
 	private User user;
-		
+
 	public Account(Long accountId, String accountName, BigDecimal balance, Long userId) {
 		super();
 		this.accountId = accountId;
 		this.accountName = accountName;
 		this.balance = balance;
-		this.user = new User(userId, "", "","","","",null);
+		this.user = new User(userId, "", "", "", "", "", null);
 	}
-	
+
 	public Account() {
-		
+
 	}
-	
+
 	public Long getAccountId() {
 		return accountId;
 	}
+
 	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
+
 	public String getAccountName() {
 		return accountName;
 	}
+
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
+
 	public BigDecimal getBalance() {
 		return balance;
 	}
+
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}

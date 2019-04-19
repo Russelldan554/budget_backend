@@ -16,44 +16,49 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RestController
 public class UserController {
-    
+
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping("/users")
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
-	
+
 	@RequestMapping("/users/{id}")
 	public Optional<User> getUser(@PathVariable Long id) {
-		return userService.getUser(id);
+		Optional<User> user = userService.getUser(id);
+		if (!user.isPresent())
+			throw new UserNotFoundException("User with id = " + id + " not found.");
+		return user;
 	}
-	
-	@RequestMapping(method=RequestMethod.POST, value = "/users")
+
+	@RequestMapping(method = RequestMethod.POST, value = "/users")
 	public void addUser(@RequestBody User user) {
 		userService.addUser(user);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT, value = "/users/{id}")
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
 	public void updateUser(@RequestBody User user, @PathVariable Long id) {
 		userService.updateUser(id, user);
 	}
-	
-	@RequestMapping(method=RequestMethod.DELETE, value = "/users/{id}")
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 	}
-	
-	@RequestMapping(method=RequestMethod.GET, value = "/users/login")
+
+	@RequestMapping(method = RequestMethod.POST, value = "/users/login")
 	@ResponseBody
-	public Long loginCheck(@RequestBody Map<String,String> requestBody) {
+	public Long loginCheck(@RequestBody Map<String, String> requestBody) {
 		String userName = requestBody.get("username");
 		String password = requestBody.get("password");
 		User tempUser = userService.findByUsername(userName);
-		if (password.compareTo(tempUser.getPassword())==0) {
+		if (tempUser == null)
+			throw new UserNotFoundException("Username not found.");
+		if (password.compareTo(tempUser.getPassword()) == 0) {
 			return tempUser.getUserId();
 		} else
-		return 0L;
+			throw new PasswordMismatchException("Password incorrect.");
 	}
 }
