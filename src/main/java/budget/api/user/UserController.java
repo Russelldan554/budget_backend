@@ -45,7 +45,7 @@ public class UserController {
 		userService.deleteUser(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value = "/users/login")
+	@RequestMapping(method=RequestMethod.POST, value = "/users/login")
 	@ResponseBody
 	public Long loginCheck(@RequestBody Map<String,String> requestBody) {
 		String userName = requestBody.get("username");
