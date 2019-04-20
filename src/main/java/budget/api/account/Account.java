@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import budget.api.user.User;
+import net.bytebuddy.build.ToStringPlugin.Exclude;
 
 @Entity
 public class Account {

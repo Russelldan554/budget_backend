@@ -1,4 +1,4 @@
-package budget.api.user;
+package budget.api;
 
 public class PasswordMismatchException extends RuntimeException {
 

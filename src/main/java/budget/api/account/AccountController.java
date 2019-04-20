@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import budget.api.ResourceNotFoundException;
 import budget.api.user.User;
 
 @CrossOrigin(origins = "*")
@@ -22,12 +23,20 @@ public class AccountController {
 
 	@RequestMapping("/users/{userId}/accounts")
 	public List<Account> getAllAccounts(@PathVariable Long userId) {
-		return accountService.getAllAccounts(userId);
+		List<Account> accountList = accountService.getAllAccounts(userId);
+		if (accountList.size()<1) {
+			throw new NullPointerException("No accounts found.");
+		}
+		return accountList;
 	}
 
 	@RequestMapping("/users/{userId}/accounts/{accountId}")
 	public Optional<Account> getAccount(@PathVariable Long userId, @PathVariable Long accountId) {
-		return accountService.getAccount(accountId);
+		Optional<Account> account = accountService.getAccount(accountId);
+		if (!account.isPresent()) {
+			throw new ResourceNotFoundException("Account not found.");
+		}
+		return account;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users/{userId}/accounts")

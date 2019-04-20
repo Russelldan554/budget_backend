@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import budget.api.PasswordMismatchException;
+import budget.api.ResourceNotFoundException;
+
 @CrossOrigin(origins = "*")
 @RestController
 public class UserController {
@@ -29,7 +32,7 @@ public class UserController {
 	public Optional<User> getUser(@PathVariable Long id) {
 		Optional<User> user = userService.getUser(id);
 		if (!user.isPresent())
-			throw new UserNotFoundException("User with id = " + id + " not found.");
+			throw new ResourceNotFoundException("User not found.");
 		return user;
 	}
 
@@ -47,20 +50,15 @@ public class UserController {
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(method=RequestMethod.POST, value = "/users/login")
-=======
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users/login")
->>>>>>> roland-update
 	@ResponseBody
 	public Long loginCheck(@RequestBody Map<String, String> requestBody) {
 		String userName = requestBody.get("username");
 		String password = requestBody.get("password");
 		User tempUser = userService.findByUsername(userName);
 		if (tempUser == null)
-			throw new UserNotFoundException("Username not found.");
+			throw new ResourceNotFoundException("Username not found.");
 		if (password.compareTo(tempUser.getPassword()) == 0) {
 			return tempUser.getUserId();
 		} else
