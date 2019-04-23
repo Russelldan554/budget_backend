@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import budget.api.ResourceNotFoundException;
 import budget.api.account.Account;
+import budget.api.user.User;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,6 +24,15 @@ public class TransactionController {
 	@RequestMapping("/users/{userId}/accounts/{accountId}/transactions")
 	public List<Transaction> getAllTransactions(@PathVariable Long userId, @PathVariable Long accountId) {
 		List<Transaction> transactionList = transactionService.getAllTransactions(accountId);
+		if (transactionList.size() < 1) {
+			throw new NullPointerException("No transactions found.");
+		}
+		return transactionList;
+	}
+	
+	@RequestMapping("/users/{userId}/transactions")
+	public List<Transaction> getTransactions(@PathVariable Long userId) {
+		List<Transaction> transactionList = transactionService.getTransactions(userId);
 		if (transactionList.size() < 1) {
 			throw new NullPointerException("No transactions found.");
 		}
@@ -43,6 +53,7 @@ public class TransactionController {
 	public void addTransaction(@RequestBody Transaction transaction, @PathVariable Long userId,
 			@PathVariable Long accountId) {
 		transaction.setAccount(new Account(accountId, "", null, null));
+		transaction.setUser(new User(userId, "", null, null, null, null, null));
 		transactionService.addTransaction(transaction);
 	}
 

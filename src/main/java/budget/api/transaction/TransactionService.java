@@ -18,6 +18,12 @@ public class TransactionService {
 		transactionRepository.findByAccountAccountId(accountId).forEach(transactions::add);
 		return transactions;
 	}
+	
+	public List<Transaction> getTransactions(Long userId) {
+		List<Transaction> transactions = new ArrayList<>();
+		transactionRepository.findByUserUserId(userId).forEach(transactions::add);
+		return transactions;
+	}
 
 	public Optional<Transaction> getTransaction(Long transactionId) {
 		return transactionRepository.findById(transactionId);

@@ -8,4 +8,5 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 
 	public List<Transaction> findByAccountAccountId(Long accountId);
 
+	public List<Transaction> findByUserUserId(Long userId);
 }
