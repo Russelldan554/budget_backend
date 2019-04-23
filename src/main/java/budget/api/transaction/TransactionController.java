@@ -28,6 +28,15 @@ public class TransactionController {
 		}
 		return transactionList;
 	}
+	
+	@RequestMapping("/users/{userId}/transactions")
+	public List<Transaction> getAllTransactionsByUserId(@PathVariable Long userId) {
+		List<Transaction> transactionList = transactionService.getAllTransactionsByUserId(userId);
+		if (transactionList.size() < 1) {
+			throw new NullPointerException("No transactions found.");
+		}
+		return transactionList;
+	}
 
 	@RequestMapping("/users/{userId}/accounts/{accountId}/transactions/{transactionId}")
 	public Optional<Transaction> getTransaction(@PathVariable Long userId, @PathVariable Long accountId,
@@ -43,6 +52,7 @@ public class TransactionController {
 	public void addTransaction(@RequestBody Transaction transaction, @PathVariable Long userId,
 			@PathVariable Long accountId) {
 		transaction.setAccount(new Account(accountId, "", null, null));
+		transaction.setUserId(userId);
 		transactionService.addTransaction(transaction);
 	}
 
