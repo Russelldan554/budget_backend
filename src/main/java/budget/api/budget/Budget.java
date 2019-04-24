@@ -20,14 +20,17 @@ public class Budget {
 	@Column(nullable = false, length = 10)
 	private String category;
 	@Column(nullable = false, precision = 10, scale = 2)
+	private BigDecimal spentAmount;
+	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal maxAmount;
 	@ManyToOne
 	private User user;
 
-	public Budget(Long budgetId, String category, BigDecimal maxAmount, Long userId) {
+	public Budget(Long budgetId, String category, BigDecimal spentAmount, BigDecimal maxAmount, Long userId) {
 		super();
 		this.budgetId = budgetId;
 		this.category = category;
+		this.spentAmount = spentAmount;
 		this.maxAmount = maxAmount;
 		this.user = new User(userId, "", "", "", "", "", null);
 	}
@@ -50,6 +53,14 @@ public class Budget {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public BigDecimal getSpentAmount() {
+		return spentAmount;
+	}
+
+	public void setSpentAmount(BigDecimal spentAmount) {
+		this.spentAmount = spentAmount;
 	}
 
 	public BigDecimal getMaxAmount() {
