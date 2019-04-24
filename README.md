@@ -35,7 +35,7 @@ Format example
     PasswordMismatchException - message say password incorrect.
     NullPointerException - messages says resource not found.
     
-## Entrypoints
+# Entrypoints
 
 ## Users
 ### Login
