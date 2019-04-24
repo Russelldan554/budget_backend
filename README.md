@@ -35,7 +35,12 @@ Format example
     PasswordMismatchException - message say password incorrect.
     NullPointerException - messages says resource not found.
     
-Login: Will return Long = userId if submitted password == password stored in DB for that user, or Long = 0 if not. 
+## Entrypoints
+
+## Users
+### Login
+Will return Long = userId if submitted password == password stored in DB for that user, or Long = 0 if not. 
+
 ```
   Post request to url: localhost:8080/users/login
   Body
@@ -45,20 +50,26 @@ Login: Will return Long = userId if submitted password == password stored in DB 
   } 
 ```
 
-Get all users:
-
-  Get request to Url: localhost:8080/users
-
-Get or Delete particular user:
-
-  Get or Delete request to url: localhost:8080/users/{userId}
-
-Post user: 
+### Get All Users
 ```
-  Post request to url: localhost:8080/users
-  Body
-  {
-    	"userId": null,
+GET request to URL: localhost:8080/users
+```
+
+### Get User
+```
+GET request to URL: localhost:8080/users/{userId}
+```
+
+### Delete User
+```
+DELETE request to URL: localhost:8080/users/{userId}
+```
+
+### Add User
+```
+POST request to URL: localhost:8080/users
+    {
+        "userId": null,
     	"userName": "bigone2",
     	"email": "BillyBob@monkey.com",
     	"password": "R%#$F^",
@@ -68,11 +79,9 @@ Post user:
     }    
 ```
 
-
-Update particular user: 
+### Update User 
 ```
-  Put request here: localhost:8080/users/{userId}
-  Body
+PUT request to URL: localhost:8080/users/{userId}
    {
     	"userId": {userId},
     	"userName": "UpdatedYeah",
@@ -84,30 +93,35 @@ Update particular user:
     }
 ```
 
-Get all accounts of user:
-
-  Get request to Url: localhost:8080/users/{userId}/accounts
-
-Get or Delete particular account of user:
-
-  Get or Delete request to url: localhost:8080/users/{userId}/accounts/{accountId}
-
-Post account: 
+## Accounts
+### Get All Accounts of User
 ```
-  Post request to url: localhost:8080/users/{userId}/accounts
-  Body
+GET request to URL: localhost:8080/users/{userId}/accounts
+```
+
+### Get Account
+```
+GET request to URL: localhost:8080/users/{userId}/accounts/{accountId}
+```
+
+### Delete Account
+```
+DELETE request to URL: localhost:8080/users/{userId}/accounts/{accountId}
+```
+
+### Add Account 
+```
+POST request to URL: localhost:8080/users/{userId}/accounts
     {
-    	"accountId": null,
-    	"accountName": "bigone77",
-    	"balance": 7777.77
+        "accountId": null,
+        "accountName": "bigone77",
+        "balance": 7777.77
     }  
 ```
 
-
-Update particular account of user: 
+### Update Account
 ```
-  Put request here: localhost:8080/users/{userId}/accounts/{accountId}
-  Body
+PUT request to URL: localhost:8080/users/{userId}/accounts/{accountId}
     {
     	"accountId": {accountId},
     	"accountName": "updated77",
@@ -115,32 +129,36 @@ Update particular account of user:
     }
 ```
 
-
-Get all transactions of account:
-
-  Get request to Url: localhost:8080/users/{userId}/accounts/{accountId}/transactions
-
-Get or Delete particular transaction of account:
-
-  Get or Delete request to url: localhost:8080/users/{userId}/accounts/{accountId}/transactions/{transactionId}
-
-Post transaction: 
+## Transactions
+### Get All Transactions of Account
 ```
-  Post request to url: localhost:8080/users/{userId}/accounts/{accountId}/transactions
-  Body
+GET request to URL: localhost:8080/users/{userId}/accounts/{accountId}/transactions
+```
+
+### Get Transaction
+```
+GET request to URL: localhost:8080/users/{userId}/accounts/{accountId}/transactions/{transactionId}
+```
+
+### Delete Transaction
+```
+DELETE request to URL: localhost:8080/users/{userId}/accounts/{accountId}/transactions/{transactionId}
+```
+
+### Add Transaction 
+```
+POST request to URL: localhost:8080/users/{userId}/accounts/{accountId}/transactions
     {
-    	"transactionId": null,
+        "transactionId": null,
         "date": "2019-01-14",
-    	"category": "$Money",
-    	"amount": 77.77
+        "category": "$Money",
+        "amount": 77.77
     }   
 ```
 
-
-Update particular transaction of account: 
+### Update Transaction 
 ```
-  Put request here: localhost:8080/users/{userId}/accounts/{accountId}/transactions/{transactionId}
-  Body
+PUT request to URL: localhost:8080/users/{userId}/accounts/{accountId}/transactions/{transactionId}
     {
     	"transactionId": {transactionId},
         "date": "2019-01-14",
@@ -149,35 +167,39 @@ Update particular transaction of account:
     }
 ```
 
-Get all budgets of user:
-
-  Get request to Url: localhost:8080/users/{userId}/budgets
-
-Get or Delete particular budget of user:
-
-  Get or Delete request to url: localhost:8080/users/{userId}/budgets/{budgetId}
-
-Post budget: 
+## Budgets
+### Get All Budgets of User
 ```
-  Post request to url: localhost:8080/users/{userId}/budgets
-  Body
+GET request to URL: localhost:8080/users/{userId}/budgets
+```
+
+### Get Budget
+```
+GET request to URL: localhost:8080/users/{userId}/budgets/{budgetId}
+```
+
+### Delete Budget
+```
+DELETE request to URL: localhost:8080/users/{userId}/budgets/{budgetId}
+```
+
+### Add Budget 
+```
+POST request to URL: localhost:8080/users/{userId}/budgets
     {
     	"budgetId": null,
     	"category": "Groceries",
-    	"maxAmount": 777.77
-    }   
-```
-
-
-Update particular budget of user: 
-```
-  Put request here: localhost:8080/users/{userId}/budgets/{budgetId}
-  Body
-    {
-    	"budgetId": null,
-    	"category": "Gas",
     	"maxAmount": 7777.77
     }
 ```
 
-
+### Update Budget 
+```
+PUT request to URL: localhost:8080/users/{userId}/budgets/{budgetId}
+    {
+    	"budgetId": null,
+    	"category": "Gas",
+        "spentAmount": 3535.35
+    	"maxAmount": 7777.77
+    }
+```
