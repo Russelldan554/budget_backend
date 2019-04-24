@@ -28,7 +28,7 @@ public class TransactionController {
 		}
 		return transactionList;
 	}
-	
+
 	@RequestMapping("/users/{userId}/transactions")
 	public List<Transaction> getAllTransactionsByUserId(@PathVariable Long userId) {
 		List<Transaction> transactionList = transactionService.getAllTransactionsByUserId(userId);
@@ -60,6 +60,7 @@ public class TransactionController {
 	public void updateTransaction(@RequestBody Transaction transaction, @PathVariable Long userId,
 			@PathVariable Long accountId, @PathVariable Long transactionId) {
 		transaction.setAccount(new Account(accountId, "", null, null));
+		transaction.setUserId(userId);
 		transactionService.updateTransaction(transaction);
 	}
 

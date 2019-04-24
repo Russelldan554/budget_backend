@@ -8,9 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import budget.api.user.User;
-import net.bytebuddy.build.ToStringPlugin.Exclude;
 
 @Entity
 public class Account {
@@ -61,6 +61,8 @@ public class Account {
 		this.balance = balance;
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "user")
 	public User getUser() {
 		return user;
 	}

@@ -10,8 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import budget.api.account.Account;
-import budget.api.account.AccountRepository;
 
 @Entity
 public class Transaction {
@@ -30,7 +31,6 @@ public class Transaction {
 	private Long userId;
 	@ManyToOne
 	private Account account;
-
 
 	public Transaction(Long transactionId, Date date, String category, BigDecimal amount, Long accountId) {
 		super();
@@ -77,6 +77,8 @@ public class Transaction {
 		this.amount = amount;
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "account")
 	public Account getAccount() {
 		return account;
 	}
@@ -84,12 +86,12 @@ public class Transaction {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
+
 	public Long getUserId() {
 		return userId;
 	}
-	
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	} 
+	}
 }

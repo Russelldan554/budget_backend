@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import budget.api.user.User;
 
 @Entity
@@ -71,6 +74,8 @@ public class Budget {
 		this.maxAmount = maxAmount;
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "user")
 	public User getUser() {
 		return user;
 	}
