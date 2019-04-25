@@ -20,15 +20,21 @@ public class Account {
 	private Long accountId;
 	@Column(nullable = false, length = 30)
 	private String accountName;
+	@Column(nullable = false, length = 30)
+	private String accountType;
+	@Column(nullable = false, length = 30)
+	private String bankName;
 	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal balance;
 	@ManyToOne
 	private User user;
 
-	public Account(Long accountId, String accountName, BigDecimal balance, Long userId) {
+	public Account(Long accountId, String accountName, String accountType, String bankName, BigDecimal balance, Long userId) {
 		super();
 		this.accountId = accountId;
 		this.accountName = accountName;
+		this.accountType = accountType;
+		this.bankName = bankName;
 		this.balance = balance;
 		this.user = new User(userId, "", "", "", "", "", null);
 	}
@@ -51,6 +57,22 @@ public class Account {
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
 
 	public BigDecimal getBalance() {

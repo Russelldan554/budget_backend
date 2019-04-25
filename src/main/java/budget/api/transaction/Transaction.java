@@ -38,7 +38,7 @@ public class Transaction {
 		this.date = date;
 		this.category = category;
 		this.amount = amount;
-		this.account = new Account(accountId, "", null, null);
+		this.account = new Account(accountId, "", "", "", null, null);
 	}
 
 	public Transaction() {
