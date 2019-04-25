@@ -24,9 +24,6 @@ public class AccountController {
 	@RequestMapping("/users/{userId}/accounts")
 	public List<Account> getAllAccounts(@PathVariable Long userId) {
 		List<Account> accountList = accountService.getAllAccounts(userId);
-		if (accountList.size()<1) {
-			throw new NullPointerException("No accounts found.");
-		}
 		return accountList;
 	}
 

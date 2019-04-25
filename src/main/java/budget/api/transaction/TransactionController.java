@@ -51,7 +51,7 @@ public class TransactionController {
 	@RequestMapping(method = RequestMethod.POST, value = "/users/{userId}/accounts/{accountId}/transactions")
 	public void addTransaction(@RequestBody Transaction transaction, @PathVariable Long userId,
 			@PathVariable Long accountId) {
-		transaction.setAccount(new Account(accountId, "", null, null));
+		transaction.setAccount(new Account(accountId, "", "", "", null, null));
 		transaction.setUserId(userId);
 		transactionService.addTransaction(transaction);
 	}
@@ -59,7 +59,7 @@ public class TransactionController {
 	@RequestMapping(method = RequestMethod.PUT, value = "/users/{userId}/accounts/{accountId}/transactions/{transactionId}")
 	public void updateTransaction(@RequestBody Transaction transaction, @PathVariable Long userId,
 			@PathVariable Long accountId, @PathVariable Long transactionId) {
-		transaction.setAccount(new Account(accountId, "", null, null));
+		transaction.setAccount(new Account(accountId, "", "", "", null, null));
 		transaction.setUserId(userId);
 		transactionService.updateTransaction(transaction);
 	}
