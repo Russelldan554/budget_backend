@@ -20,6 +20,8 @@ public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long transactionId;
+	@Column(nullable = false, length = 40)
+	private String name;
 	@Column(nullable = false)
 	@JsonFormat(pattern = "yyyy-MM-DD")
 	private Date date;
@@ -32,9 +34,10 @@ public class Transaction {
 	@ManyToOne
 	private Account account;
 
-	public Transaction(Long transactionId, Date date, String category, BigDecimal amount, Long accountId) {
+	public Transaction(Long transactionId, String name, Date date, String category, BigDecimal amount, Long accountId) {
 		super();
 		this.transactionId = transactionId;
+		this.name = name;
 		this.date = date;
 		this.category = category;
 		this.amount = amount;
@@ -77,8 +80,8 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	@JsonIgnore
-	@JsonProperty(value = "account")
+//	@JsonIgnore
+//	@JsonProperty(value = "account")
 	public Account getAccount() {
 		return account;
 	}
@@ -93,5 +96,13 @@ public class Transaction {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
