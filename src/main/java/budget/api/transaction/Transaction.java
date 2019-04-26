@@ -19,10 +19,12 @@ public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long transactionId;
+	@Column(nullable = false, length = 40)
+	private String name;
 	@Column(nullable = false)
 	@JsonFormat(pattern = "yyyy-MM-DD")
 	private Date date;
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false, length = 40)
 	private String category;
 	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal amount;
@@ -51,6 +53,14 @@ public class Transaction {
 
 	public void setTransactionId(Long transactionId) {
 		this.transactionId = transactionId;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Date getDate() {
