@@ -115,6 +115,8 @@ POST request to URL: localhost:8080/users/{userId}/accounts
     {
         "accountId": null,
         "accountName": "bigone77",
+        "accountType": "Checking",
+        "bankName": "bigBank",
         "balance": 7777.77
     }  
 ```
@@ -125,6 +127,8 @@ PUT request to URL: localhost:8080/users/{userId}/accounts/{accountId}
     {
     	"accountId": {accountId},
     	"accountName": "updated77",
+        "accountType": "Savings",
+        "bankName": "UpdatedBank",
     	"balance": 777777.77
     }
 ```
@@ -189,6 +193,7 @@ POST request to URL: localhost:8080/users/{userId}/budgets
     {
     	"budgetId": null,
     	"category": "Groceries",
+        "spentAmount": 0,
     	"maxAmount": 7777.77
     }
 ```
@@ -199,7 +204,7 @@ PUT request to URL: localhost:8080/users/{userId}/budgets/{budgetId}
     {
     	"budgetId": null,
     	"category": "Gas",
-        "spentAmount": 3535.35
+        "spentAmount": 3535.35,
     	"maxAmount": 7777.77
     }
 ```
