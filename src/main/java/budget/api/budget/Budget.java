@@ -9,56 +9,78 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import budget.api.user.User;
 
 @Entity
 public class Budget {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long budgetId;
-	@Column(nullable=false, length=10)
+	@Column(nullable = false, length = 10)
 	private String category;
-	@Column(nullable=false, precision=10, scale=2)
+	@Column(nullable = false, precision = 10, scale = 2)
+	private BigDecimal spentAmount;
+	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal maxAmount;
 	@ManyToOne
 	private User user;
-		
-	public Budget(Long budgetId, String category, BigDecimal maxAmount, Long userId) {
+
+	public Budget(Long budgetId, String category, BigDecimal spentAmount, BigDecimal maxAmount, Long userId) {
 		super();
 		this.budgetId = budgetId;
 		this.category = category;
+		this.spentAmount = spentAmount;
 		this.maxAmount = maxAmount;
-		this.user = new User(userId, "", "","","","",null);
+		this.user = new User(userId, "", "", "", "", "", null);
 	}
-	
+
 	public Budget() {
-		
+
 	}
-	
+
 	public Long getBudgetId() {
 		return budgetId;
 	}
+
 	public void setBudgetId(Long budgetId) {
 		this.budgetId = budgetId;
 	}
+
 	public String getCategory() {
 		return category;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+	public BigDecimal getSpentAmount() {
+		return spentAmount;
+	}
+
+	public void setSpentAmount(BigDecimal spentAmount) {
+		this.spentAmount = spentAmount;
+	}
+
 	public BigDecimal getMaxAmount() {
 		return maxAmount;
 	}
+
 	public void setMaxAmount(BigDecimal maxAmount) {
 		this.maxAmount = maxAmount;
 	}
+
+	@JsonIgnore
+	@JsonProperty(value = "user")
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 }
-
