@@ -236,3 +236,45 @@ PUT request to URL: localhost:8080/users/{userId}/budgets/{budgetId}
         "maxAmount": 7777.77
     }
 ```
+
+### Categories
+
+#### Get All Categories of User
+
+```sql
+GET request to URL: localhost:8080/users/{userId}/categories
+```
+
+#### Get Category
+
+```sql
+GET request to URL: localhost:8080/users/{userId}/categories/{categoryId}
+```
+
+#### Delete Category
+
+```sql
+DELETE request to URL: localhost:8080/users/{userId}/categories/{categoryId}
+```
+
+#### Add Category
+
+```sql
+POST request to URL: localhost:8080/users/{userId}/categories/{categoryId}
+    {
+        "categoryId": null,
+        "name": "Groceries",
+        "user": 0
+    }
+```
+
+#### Update Category
+
+```sql
+PUT request to URL: localhost:8080/users/{userId}/categories/{categoryId}
+    {
+        "categoryId": null,
+        "name": "Food",
+        "user": 0
+    }
+```
