@@ -165,6 +165,12 @@ PUT request to URL: localhost:8080/users/{userId}/accounts/{accountId}
 
 ### Transactions
 
+#### Get All Transactions of User
+
+```sql
+GET request to URL: localhost:8080/users/{userId}/transactions
+```
+
 #### Get All Transactions of Account
 
 ```sql
