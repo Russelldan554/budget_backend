@@ -103,6 +103,20 @@ PUT request to URL: localhost:8080/users/{userId}
     }
 ```
 
+#### Update Specific User Fields
+
+Any number of, combination, and/or order of fields below. 
+
+```sql
+PUT request to URL: localhost:8080/users/{userId}/update
+   {
+        "email": "BillyBob@monkey.com",
+        "password": "R%&$F^",
+        "firstName": "Billy",
+        "lastName": "Bob"
+    }
+```
+
 ### Accounts
 
 #### Get All Accounts of User
