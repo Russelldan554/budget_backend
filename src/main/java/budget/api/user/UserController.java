@@ -22,7 +22,7 @@ import budget.api.ResourceNotFoundException;
 public class UserController {
 
 	private BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(10);
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -68,5 +68,24 @@ public class UserController {
 			return tempUser.getUserId();
 		} else
 			throw new PasswordMismatchException("Password incorrect.");
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/users/{id}/update")
+	@ResponseBody
+	public Map<String, String> updateInfo(@RequestBody Map<String, String> requestBody, @PathVariable Long id) {
+		if (requestBody.containsKey("firstName")) {
+			userService.updateInfo(id, "firstName", requestBody.get("firstName"));
+		}
+		if (requestBody.containsKey("lastName")) {
+			userService.updateInfo(id, "lastName", requestBody.get("lastName"));
+		}
+		if (requestBody.containsKey("email")) {
+			userService.updateInfo(id, "email", requestBody.get("email"));
+		}
+		if (requestBody.containsKey("password")) {
+			userService.updateInfo(id, "password", bCrypt.encode(requestBody.get("password")));
+			requestBody.replace("password", "Saved Successfully");
+		}
+		return requestBody;
 	}
 }

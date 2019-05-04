@@ -38,4 +38,23 @@ public class UserService {
 	public User findByUsername(String userName) {
 		return userRepository.findByuserName(userName);
 	}
+
+	public void updateInfo(Long id, String key, String value) {
+		Optional<User> user = userRepository.findById(id);
+		if (user.isPresent()) {
+			User tempUser = user.get();
+			switch (key) {
+			case ("firstName"):
+				tempUser.setFirstName(value);
+			case ("lastName"):
+				tempUser.setLastName(value);
+			case ("email"):
+				tempUser.setEmail(value);
+			case ("password"):
+				tempUser.setPassword(value);
+			default:
+			}
+			userRepository.save(tempUser);
+		}
+	}
 }
