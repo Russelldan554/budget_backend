@@ -25,7 +25,7 @@ public class Transaction {
 	@Column(nullable = false)
 	@JsonFormat(pattern = "yyyy-MM-DD")
 	private Date date;
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false, length = 40)
 	private String category;
 	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal amount;
