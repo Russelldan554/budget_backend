@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,8 @@ import budget.api.ResourceNotFoundException;
 @CrossOrigin(origins = "*")
 @RestController
 public class UserController {
+
+	private BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(10);
 
 	@Autowired
 	private UserService userService;
@@ -38,11 +41,13 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users")
 	public void addUser(@RequestBody User user) {
+		user.setPassword(bCrypt.encode(user.getPassword()));
 		userService.addUser(user);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
 	public void updateUser(@RequestBody User user, @PathVariable Long id) {
+		user.setPassword(bCrypt.encode(user.getPassword()));
 		userService.updateUser(id, user);
 	}
 
@@ -59,9 +64,28 @@ public class UserController {
 		User tempUser = userService.findByUsername(userName);
 		if (tempUser == null)
 			throw new ResourceNotFoundException("Username not found.");
-		if (password.compareTo(tempUser.getPassword()) == 0) {
+		if (bCrypt.matches(password, tempUser.getPassword())) {
 			return tempUser.getUserId();
 		} else
 			throw new PasswordMismatchException("Password incorrect.");
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/users/{id}/update")
+	@ResponseBody
+	public Map<String, String> updateInfo(@RequestBody Map<String, String> requestBody, @PathVariable Long id) {
+		if (requestBody.containsKey("firstName")) {
+			userService.updateInfo(id, "firstName", requestBody.get("firstName"));
+		}
+		if (requestBody.containsKey("lastName")) {
+			userService.updateInfo(id, "lastName", requestBody.get("lastName"));
+		}
+		if (requestBody.containsKey("email")) {
+			userService.updateInfo(id, "email", requestBody.get("email"));
+		}
+		if (requestBody.containsKey("password")) {
+			userService.updateInfo(id, "password", bCrypt.encode(requestBody.get("password")));
+			requestBody.replace("password", "Saved Successfully");
+		}
+		return requestBody;
 	}
 }
