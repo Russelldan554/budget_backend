@@ -284,7 +284,7 @@ POST request to URL: localhost:8080/users/{userId}/categories/{categoryId}
     {
         "categoryId": null,
         "name": "Groceries",
-        "user": 0
+        "userId": 0
     }
 ```
 
@@ -295,6 +295,6 @@ PUT request to URL: localhost:8080/users/{userId}/categories/{categoryId}
     {
         "categoryId": null,
         "name": "Food",
-        "user": 0
+        "userId": 0
     }
 ```
