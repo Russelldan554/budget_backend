@@ -28,11 +28,8 @@ public class AccountController {
 	}
 
 	@RequestMapping("/users/{userId}/accounts/{accountId}")
-	public Optional<Account> getAccount(@PathVariable Long userId, @PathVariable Long accountId) {
-		Optional<Account> account = accountService.getAccount(accountId);
-		if (!account.isPresent()) {
-			throw new ResourceNotFoundException("Account not found.");
-		}
+	public Account getAccount(@PathVariable Long userId, @PathVariable Long accountId) {
+		Account account = accountService.getAccount(accountId);
 		return account;
 	}
 

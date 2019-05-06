@@ -39,12 +39,9 @@ public class TransactionController {
 	}
 
 	@RequestMapping("/users/{userId}/accounts/{accountId}/transactions/{transactionId}")
-	public Optional<Transaction> getTransaction(@PathVariable Long userId, @PathVariable Long accountId,
+	public Transaction getTransaction(@PathVariable Long userId, @PathVariable Long accountId,
 			@PathVariable Long transactionId) {
-		Optional<Transaction> transaction = transactionService.getTransaction(transactionId);
-		if (!transaction.isPresent()) {
-			throw new ResourceNotFoundException("Transaction not found.");
-		}
+		Transaction transaction = transactionService.getTransaction(transactionId);
 		return transaction;
 	}
 

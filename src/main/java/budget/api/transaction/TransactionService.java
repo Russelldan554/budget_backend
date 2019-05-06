@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;
+
+import budget.api.ResourceNotFoundException;
 
 @Service
 public class TransactionService {
@@ -25,8 +28,12 @@ public class TransactionService {
 		return transactions;
 	}
 
-	public Optional<Transaction> getTransaction(Long transactionId) {
-		return transactionRepository.findById(transactionId);
+	public Transaction getTransaction(Long transactionId) {
+		Optional<Transaction> optTransaction = transactionRepository.findById(transactionId);
+		if (!optTransaction.isPresent()) {
+			throw new ResourceNotFoundException("Transaction not found.");
+		}
+		return optTransaction.get();
 	}
 
 	public void addTransaction(Transaction transaction) {

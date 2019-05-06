@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import budget.api.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -18,11 +23,17 @@ public class UserService {
 		userRepository.findAll().forEach(users::add);
 		return users;
 	}
-
-	public Optional<User> getUser(Long id) {
-		return userRepository.findById(id);
+	
+	@PostAuthorize("returnObject.userName == authentication.name")
+	public User getUser(Long id) {
+		Optional<User> optUser = userRepository.findById(id);
+		if (!optUser.isPresent())
+			throw new ResourceNotFoundException("User not found.");
+		User user = optUser.get();
+		return user;
 	}
-
+	
+	//@PreAuthorize("#username == application.principal.user.userName")
 	public void addUser(User user) {
 		userRepository.save(user);
 	}
@@ -35,6 +46,7 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 
+	@PostAuthorize("returnObject.userName == authentication.name")
 	public User findByUsername(String userName) {
 		return userRepository.findByuserName(userName);
 	}
