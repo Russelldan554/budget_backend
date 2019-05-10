@@ -35,7 +35,7 @@ public class User {
 	@Column(nullable = false, length = 20)
 	private String lastName;
 	@Column(nullable = false)
-	@JsonFormat(pattern = "yyyy-MM-DD")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateCreated;
 
 	// constructor
