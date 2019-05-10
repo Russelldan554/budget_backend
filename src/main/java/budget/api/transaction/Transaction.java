@@ -23,7 +23,7 @@ public class Transaction {
 	@Column(nullable = false, length = 40)
 	private String name;
 	@Column(nullable = false)
-	@JsonFormat(pattern = "yyyy-MM-DD")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	@Column(nullable = false, length = 40)
 	private String category;

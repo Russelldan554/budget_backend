@@ -20,7 +20,7 @@ public class Budget {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long budgetId;
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false, length = 40)
 	private String category;
 	@Column(nullable = false, precision = 10, scale = 2)
 	private BigDecimal spentAmount;
